@@ -4,6 +4,7 @@
   become: true
 
   roles:
-    - { role: java }
+    - { role: openjdk }
     - { role: elasticsearch }
+    - { role: logstash }
     - { role: kibana }
