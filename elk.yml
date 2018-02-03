@@ -1,0 +1,9 @@
+---
+- name: Install the ELK stack locally
+  hosts: localhost
+  become: true
+
+  roles:
+    - { role: java }
+    - { role: elasticsearch }
+    - { role: kibana }

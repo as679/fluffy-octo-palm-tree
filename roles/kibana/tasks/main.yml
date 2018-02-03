@@ -1,0 +1,11 @@
+---
+- name: Install Kibana
+  yum:
+    name: https://artifacts.elastic.co/downloads/kibana/kibana-6.1.3-x86_64.rpm
+    state: present
+- name: Start Kibana
+  systemd:
+    daemon_reload: yes
+    name: kibana
+    state: restarted
+
