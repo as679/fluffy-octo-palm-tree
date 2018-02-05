@@ -7,4 +7,5 @@
     - { role: openjdk }
     - { role: elasticsearch }
     - { role: logstash }
+    - { role: rsyslog }
     - { role: kibana }
