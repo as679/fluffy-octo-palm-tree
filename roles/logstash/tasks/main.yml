@@ -7,6 +7,11 @@
   copy:
     src: logstash.conf
     dest: /etc/logstash/conf.d/logstash.conf
+- name: Configure Logstash daemon
+  replace: path=/etc/systemd/system/logstash.service regexp={{ item.regexp }} replace={{ item.replace }}
+  with_items:
+  - { regexp: '^User=logstash$', replace: 'User=root'}
+  - { regexp: '^Group=logstash$', replace: 'Group=root'}
 - name: Start Logstash
   systemd:
     daemon_reload: yes
