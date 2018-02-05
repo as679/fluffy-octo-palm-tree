@@ -1,11 +1,11 @@
 ---
 - name: Enable Rsyslogd modules
-  lineinfile: path=/etc/rsyslog.conf regexp={{ item.regexp }} insertafter={{ item.insertafter }} line={{ item.line }}
+  replace: path=/etc/rsyslog.conf regexp={{ item.regexp }} replace={{ item.replace }}
   with_items:
-  - { regexp: '^\$ModLoad imudp', insertafter: '^#\$ModLoad imudp', line: '$ModLoad imudp'}
-  - { regexp: '^\$UDPServerRun 514', insertafter: '^#\$UDPServerRun 514', line: '$UDPServerRun 514'}
-  - { regexp: '^\$ModLoad imtcp', insertafter: '^#\$ModLoad imtcp', line: '$ModLoad imtcp'}
-  - { regexp: '^\$InputTCPServerRun 514', insertafter: '^#\$InputTCPServerRun 514', line: '$InputTCPServerRun 514'}
+  - { regexp: '^#\$ModLoad imudp$', replace: '$ModLoad imudp'}
+  - { regexp: '^#\$UDPServerRun 514$', replace: '$UDPServerRun 514'}
+  - { regexp: '^#\$ModLoad imtcp$', replace: '$ModLoad imtcp'}
+  - { regexp: '^#\$InputTCPServerRun 514$', replace: '$InputTCPServerRun 514'}
 - name: Configure Rsyslogd
   copy: src={{ item }} dest=/etc/rsyslog.d/{{ item }}
   with_items:
