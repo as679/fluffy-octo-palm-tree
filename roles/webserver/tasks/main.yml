@@ -14,7 +14,7 @@
 - name: Change webserver root
   replace:
     path: /etc/nginx/nginx.conf
-    regexp: '^(\s+root\s+)/usr/share/nginx/www/avinetworks/;$'
+    regexp: '^(\s+root\s+)/usr/share/nginx/html;$'
     replace: '\1/usr/share/nginx/avinetworks;'
   notify:
   - restart nginx
