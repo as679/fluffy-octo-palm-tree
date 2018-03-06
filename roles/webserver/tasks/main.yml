@@ -1,0 +1,13 @@
+---
+- name: Install Epel
+  yum:
+    name: epel-release
+    state: present
+- name: Install Nginx
+  yum:
+    name: nginx
+    state: present
+- name: Extract avinetworks website
+  unarchive:
+    src: avinetworks.tar.gz
+    dest: /usr/share/nginx/

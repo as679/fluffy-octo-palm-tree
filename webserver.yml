@@ -1,0 +1,7 @@
+---
+- name: Install NGINX locally
+  hosts: localhost
+  become: true
+
+  roles:
+    - { role: webserver }
