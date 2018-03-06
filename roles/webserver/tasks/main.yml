@@ -11,3 +11,10 @@
   unarchive:
     src: avinetworks.tar.gz
     dest: /usr/share/nginx/
+- name: Change webserver root
+  replace:
+    path: /etc/nginx/nginx.conf
+    regexp: '^(\s+root\s+)/usr/share/nginx/www/avinetworks/;$'
+    replace: '\1/usr/share/nginx/avinetworks;'
+    notify:
+    - restart nginx
