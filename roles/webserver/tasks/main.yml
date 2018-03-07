@@ -11,10 +11,25 @@
   unarchive:
     src: avinetworks.tar.gz
     dest: /usr/share/nginx/
-- name: Change webserver root
-  replace:
-    path: /etc/nginx/nginx.conf
-    regexp: '^(\s+root\s+)/usr/share/nginx/html;$'
-    replace: '\1/usr/share/nginx/avinetworks;'
+- name: Ensure Nginx configuration
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+- name: Ensure certificate
+  copy:
+    src: "{{ item }}.crt"
+    dest: /etc/nginx/server.crt
+  when: ansible_hostname | search("{{ item }}")
+  with_items:
+  - server1
+  - server2
+- name: Ensure key
+  copy:
+    src: "{{ item }}.pem"
+    dest: /etc/nginx/server.pem
+  when: ansible_hostname | search("{{ item }}")
+  with_items:
+  - server1
+  - server2
   notify:
   - restart nginx
