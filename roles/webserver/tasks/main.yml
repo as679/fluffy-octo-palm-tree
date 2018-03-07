@@ -1,4 +1,7 @@
 ---
+- name: SELinux disable
+  selinux:
+    state: disabled
 - name: Install Epel
   yum:
     name: epel-release
