@@ -25,7 +25,7 @@
   - server2
 - name: Ensure key
   copy:
-    src: "{{ item }}.pem"
+    src: "{{ item }}.key"
     dest: /etc/nginx/server.pem
   when: ansible_hostname | search("{{ item }}")
   with_items:
