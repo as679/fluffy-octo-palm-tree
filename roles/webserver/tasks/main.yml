@@ -26,6 +26,8 @@
   with_items:
   - server1
   - server2
+  - server3
+  - server4
 - name: Ensure key
   copy:
     src: "{{ item }}.pem"
@@ -34,5 +36,7 @@
   with_items:
   - server1
   - server2
+  - server3
+  - server4
   notify:
   - restart nginx
